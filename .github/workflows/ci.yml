@@ -109,6 +109,13 @@ jobs:
     name: Test frontend
     runs-on: ubuntu-latest
 
+    env:
+      VITE_USER_SERVICE_URL: /api/user-service
+      VITE_STUDENT_SERVICE_URL: /api/student-service
+      VITE_LECTURER_SERVICE_URL: /api/lecturer-service
+      VITE_COURSE_SERVICE_URL: /api/course-service
+      VITE_ENROLLMENT_SERVICE_URL: /api/enrollment-service
+
     steps:
 
       - name: Checkout repository
@@ -137,7 +144,7 @@ jobs:
     name: Build and Push ${{ matrix.image }}
     runs-on: ubuntu-latest
 
-    # All backend tests must pass before this job starts
+    # All backend tests and frontend tests must pass before this job starts
     needs:
       - backend-test
       - frontend-test
